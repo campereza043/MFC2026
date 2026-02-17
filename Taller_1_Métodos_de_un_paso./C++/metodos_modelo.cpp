@@ -106,4 +106,19 @@ int main(){
     cout << "\n--- Euler ---\n";
     cout << "Valor en t=50: " << p_euler[N] << endl;
     cout << "Error absoluto: " << error_euler << endl;
-    cout << "Tiempo ejecucion: " << time_euler.co_
+    cout << "Tiempo ejecucion: " << time_euler.count() << " s\n";
+
+    cout << "\n--- Taylor Orden 2 ---\n";
+    cout << "Valor en t=50: " << p_taylor[N] << endl;
+    cout << "Error absoluto: " << error_taylor << endl;
+    cout << "Tiempo ejecucion: " << time_taylor.count() << " s\n";
+
+    cout << "\n--- Trapecio ---\n";
+    cout << "Valor en t=50: " << p_trap[N] << endl;
+    cout << "Error absoluto: " << error_trap << endl;
+    cout << "Tiempo ejecucion: " << time_trap.count() << " s\n";
+
+    cout << "\nArchivos generados: exacta.dat, euler.dat, taylor.dat, trapecio.dat\n";
+
+    return 0;
+}
