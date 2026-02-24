@@ -1,0 +1,16 @@
+# entorno virtual
+MFC/
+
+# python
+__pycache__/
+*.pyc
+
+# variables de entorno
+.env
+
+# archivos del sistema
+.DS_Store
+
+# builds
+build/
+dist/
