@@ -10,7 +10,7 @@ PROGRAM OsciladorLineal
     ! Configuración del dominio
     Rmin = -10.d0
     Rmax = 10.d0
-    Nf = 2000 ! Puntos máximos en la malla
+    Nf = 1600 ! Puntos máximos en la malla
 
     write(6,*) 'Calculando los 6 primeros autovalores para V(x) = |x|:'
     write(6,*) '   N      E0        E1        E2        E3        E4        E5'
@@ -60,7 +60,7 @@ PROGRAM OsciladorLineal
 
         ! Guardado de datos en la última iteración (N = Nf)
         if (N .eq. Nf) then
-            open(unit=1, file="data_Abs")
+            open(unit=1, file="data_abs_fortran")
             write(1,"('#', i4, 6x, 6(F10.6, 1x))") N, 0.5d0 * d(1:6)
             
             ! Cálculo de la norma para cada uno de los primeros 6 autovectores
@@ -89,6 +89,6 @@ PROGRAM OsciladorLineal
     end do
 
     write(6,*) '------------------------------------------------------------'
-    write(6,*) 'Proceso finalizado. Autovectores en: data_Abs'
+    write(6,*) 'Proceso finalizado. Autovectores en: data_abs_fortran'
     
 END PROGRAM OsciladorLineal
