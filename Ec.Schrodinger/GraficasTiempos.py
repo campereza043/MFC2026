@@ -1,11 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 1. Cargar datos del Problema 2
+# 1. Cargar datos del Problema 3
 try:
-    data = np.loadtxt('resultados_p1_m20.dat')
+    data = np.loadtxt('resultados_p3_m20.dat')
 except FileNotFoundError:
-    print("Error: No se encontró 'resultados_p1_m20.dat'.")
+    print("Error: No se encontró 'resultados_p3_m20.dat'.")
     exit()
 
 # 2. Definir los tiempos que quieres graficar
@@ -30,7 +30,7 @@ for i, t_val in enumerate(tiempos_a_graficar):
     u_imag = data[mask, 3]
     
     # Solución analítica para este tiempo exacto
-    u_exacta = np.exp(1j * t_val) * np.sin(x)
+    u_exacta = np.exp(1j * t_val + x)
     
     # --- Subtrama 1: Parte Real ---
     ax1.plot(x, u_exacta.real, '-', color='black', alpha=0.2)
@@ -59,7 +59,7 @@ ax2.grid(True, linestyle=':', alpha=0.6)
 plt.tight_layout()
 
 # 4. Guardado automático
-nombre_img = "Tiempos_P1.png"
+nombre_img = "Tiempos_P3.png"
 plt.savefig(nombre_img, dpi=300)
 print(f"Gráfica guardada como {nombre_img}")
 plt.show()
