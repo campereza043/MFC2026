@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 
 # 1. Cargar datos del Problema 3
 try:
-    data = np.loadtxt('resultados_p3_m20.dat')
+    data = np.loadtxt('resultados_exponencial_signo_neg.dat')
 except FileNotFoundError:
-    print("Error: No se encontró 'resultados_p3_m20.dat'.")
+    print("Error: No se encontró 'resultados_exponencial_signo_neg.dat'.")
     exit()
 
 # 2. Definir los tiempos que quieres graficar
@@ -58,8 +58,8 @@ ax2.grid(True, linestyle=':', alpha=0.6)
 
 plt.tight_layout()
 
-# 4. Guardado automático
-nombre_img = "Tiempos_P3.png"
+# 4. Guardado automático 
+nombre_img = "Tiempos_signo_neg.png"
 plt.savefig(nombre_img, dpi=300)
 print(f"Gráfica guardada como {nombre_img}")
 plt.show()
