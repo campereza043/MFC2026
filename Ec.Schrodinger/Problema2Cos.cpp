@@ -87,13 +87,15 @@ int main() {
     auto solver = A.partialPivLu();
 
     // 3. Evolución Temporal
+    double t_actual_val = 0.0; 
     for (int nn = 0; nn < N_steps; ++nn) {
-        double t_actual = nn * k;
+        double t_n = nn * k;
         double t_np1 = (nn + 1) * k;
+        t_actual_val = t_np1;
 
         // Fronteras basadas en u(x,t) = exp(it) * cos(x)
-        cd bc_L_n = exp(eye * t_actual) * cos(a);
-        cd bc_R_n = exp(eye * t_actual) * cos(b);
+        cd bc_L_n = exp(eye * t_n) * cos(a);
+        cd bc_R_n = exp(eye * t_n) * cos(b);
         cd bc_L_np1 = exp(eye * t_np1) * cos(a);
         cd bc_R_np1 = exp(eye * t_np1) * cos(b);
 
@@ -122,6 +124,18 @@ int main() {
         outfile << endl;
     }
 
+    // --- CÁLCULO DEL ERROR GLOBAL (NORMA L2) ---
+    double suma_error_sq = 0.0;
+    for (int i = 0; i <= m; ++i) {
+        double x_i = a + i * h;
+        // Solución analítica: u(x, t) = exp(i*t) * cos(x)
+        cd u_analitica = exp(eye * t_actual_val) * cos(x_i);
+        
+        // Diferencia al cuadrado (magnitud compleja)
+        suma_error_sq += pow(abs(U(i) - u_analitica), 2);
+    }
+    double error_global = sqrt(suma_error_sq);
+
     // Medición de tiempo final
     auto end_time = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = end_time - start_time;
@@ -130,7 +144,8 @@ int main() {
 
     cout << "\n--- Finalizado ---" << endl;
     cout << "Archivo 'resultados_p2_m1000.dat' generado." << endl;
-    cout << "Tiempo total de cálculo y guardado: " << elapsed.count() << " segundos." << endl;
+    cout << "Tiempo total: " << fixed << setprecision(6) << elapsed.count() << " segundos." << endl;
+    cout << "Error Global (Norma L2): " << scientific << setprecision(6) << error_global << endl;
 
     return 0;
 }

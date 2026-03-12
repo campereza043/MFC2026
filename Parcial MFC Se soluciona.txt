@@ -1,0 +1,2 @@
+Parcial MFC
+Se soluciona la ecuación propuesta en el paper por medio de redes neuronales profundas

@@ -4,8 +4,8 @@
 #include <cmath>
 #include <Eigen/Dense>
 #include <chrono>
-#include <fstream> // Necesaria para manejar archivos
-#include <iomanip> // Para controlar la precisión decimal
+#include <fstream> 
+#include <iomanip> 
 
 using namespace std;
 using namespace Eigen;
@@ -20,7 +20,7 @@ int main() {
     double b = 2.0;
     double T = 1.0;
     double k = 0.0013; 
-    int M = 1000; // Aumentamos el mallado para una gráfica más suave
+    int M = 1000; 
     
     double h = (b - a) / (M + 1);
     int N = round(T / k);
@@ -73,12 +73,23 @@ int main() {
 
     auto end = chrono::high_resolution_clock::now();
     
+    // --- CÁLCULO DEL ERROR GLOBAL (L2) ---
+    double suma_error_sq = 0.0;
+    for (int i = 0; i < M + 2; ++i) {
+        double x_i = a + i * h;
+        // Solución analítica: u(x, T) = exp(i*T) * sin(x)
+        cd u_analitica = exp(cd(0, 1) * T) * sin(x_i);
+        
+        // Diferencia al cuadrado (norma compleja)
+        suma_error_sq += pow(abs(U(i) - u_analitica), 2);
+    }
+    double error_global = sqrt(suma_error_sq);
+
     // --- EXPORTAR A .DAT ---
-    ofstream outfile("resultados.dat");
+    ofstream outfile("resultados_p1_m1000.dat");
     if (outfile.is_open()) {
-        // Cabecera comentada para que Python/Gnuplot no se confundan
         outfile << "# x real_u imag_u abs_u" << endl;
-        outfile << fixed << setprecision(8); // Alta precisión para los datos
+        outfile << fixed << setprecision(8); 
         for (int i = 0; i < M + 2; ++i) {
             outfile << a + i * h << " " 
                     << U(i).real() << " " 
@@ -86,10 +97,13 @@ int main() {
                     << abs(U(i)) << endl;
         }
         outfile.close();
-        cout << "Simulación finalizada. Datos guardados en 'resultados.dat'" << endl;
+        cout << "Simulación finalizada. Datos guardados en 'resultados_p1_m1000.dat'" << endl;
     }
 
-    cout << "Tiempo de cálculo: " << chrono::duration<double>(end - start).count() << "s" << endl;
+    cout << "------------------------------------" << endl;
+    cout << "Tiempo de cálculo: " << chrono::duration<double>(end - start).count() << " s" << endl;
+    cout << "Error Global (Norma L2): " << scientific << setprecision(6) << error_global << endl;
+    cout << "------------------------------------" << endl;
 
     return 0;
 }

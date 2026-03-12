@@ -18,7 +18,7 @@ const double PI = acos(-1.0);
 
 int main() {
     // --- Parámetros de simulación ---
-    const int m = 20;               
+    const int m = 1000;               
     const double k = 0.0014;        // Delta t
     const double a = 0.0;           
     const double b = PI;            
@@ -41,7 +41,7 @@ int main() {
         U(i) = exp(x); 
     }
 
-    ofstream outfile("resultados_exponencial_signo_neg.dat");
+    ofstream outfile("raro_1000.dat");
     outfile << "# t            x            u_real       u_imag       u_abs" << endl;
     outfile << fixed << setprecision(6);
 
@@ -50,7 +50,6 @@ int main() {
     MatrixXcd A = MatrixXcd::Zero(n_int, n_int);
     MatrixXcd B = MatrixXcd::Zero(n_int, n_int);
     
-    // Discretización: (2i/k)U_new + (1/h^2)D2_new = (2i/k)U_old - (1/h^2)D2_old
     cd diag_A = 2.0 * eye - lam;
     cd diag_B = 2.0 * eye + lam;
 
@@ -68,17 +67,17 @@ int main() {
     auto solver = A.partialPivLu();
 
     // 3. Evolución Temporal
+    double t_final_efectivo = 0.0;
     for (int nn = 0; nn < N_steps; ++nn) {
         double t_n = nn * k;
         double t_np1 = (nn + 1) * k;
+        t_final_efectivo = t_np1;
 
-        // Fronteras u(x,t) = exp(x + it)
         cd bc_L_n = exp(a + eye * t_n);
         cd bc_R_n = exp(b + eye * t_n);
         cd bc_L_np1 = exp(a + eye * t_np1);
         cd bc_R_np1 = exp(b + eye * t_np1);
 
-        // Vector de carga C (considerando el signo -u_xx)
         VectorXcd C = VectorXcd::Zero(n_int);
         C(0) = -(lam / 2.0) * (bc_L_n + bc_L_np1);
         C(n_int - 1) = -(lam / 2.0) * (bc_R_n + bc_R_np1);
@@ -87,7 +86,6 @@ int main() {
         U(0) = bc_L_np1;
         U(m) = bc_R_np1;
 
-        // Guardar cada paso
         for (int i = 0; i <= m; ++i) {
             outfile << setw(13) << t_np1 << setw(13) << a + i * h 
                     << setw(13) << U(i).real() << setw(13) << U(i).imag() 
@@ -97,8 +95,26 @@ int main() {
     }
 
     auto end_time = chrono::high_resolution_clock::now();
-    cout << "Finalizado en Debian. Tiempo: " 
+    
+    // --- CÁLCULO DEL ERROR GLOBAL (NORMA L2) ---
+    double suma_error_sq = 0.0;
+    for (int i = 0; i <= m; ++i) {
+        double x_i = a + i * h;
+        // Solución analítica para i*u_t = -u_xx con u(x,0)=e^x es u(x,t) = exp(x + i*t)
+        cd u_analitica = exp(x_i + eye * t_final_efectivo);
+        
+        // Sumar el cuadrado de la magnitud de la diferencia
+        suma_error_sq += pow(abs(U(i) - u_analitica), 2);
+    }
+    double error_global = sqrt(suma_error_sq);
+
+    // --- SALIDA DE RESULTADOS ---
+    cout << "------------------------------------" << endl;
+    cout << "Finalizado en Debian." << endl;
+    cout << "Tiempo de ejecución: " << fixed << setprecision(6) 
          << chrono::duration<double>(end_time - start_time).count() << " s" << endl;
+    cout << "Error Global (Norma L2): " << scientific << setprecision(6) << error_global << endl;
+    cout << "------------------------------------" << endl;
     
     outfile.close();
     return 0;

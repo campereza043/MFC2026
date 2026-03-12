@@ -69,9 +69,11 @@ int main() {
     auto solver = A.partialPivLu();
 
     // 3. Evolución Temporal
+    double t_final_alcanzado = 0.0;
     for (int nn = 0; nn < N_steps; ++nn) {
         double t_n = nn * k;
         double t_np1 = (nn + 1) * k;
+        t_final_alcanzado = t_np1;
 
         // Fronteras basadas en u(x,t) = exp(i*t + x)
         cd bc_L_n = exp(eye * t_n + a);
@@ -95,7 +97,25 @@ int main() {
     }
 
     auto end_time = chrono::high_resolution_clock::now();
+    
+    // --- CÁLCULO DEL ERROR GLOBAL (NORMA L2) ---
+    double suma_error_sq = 0.0;
+    for (int i = 0; i <= m; ++i) {
+        double x_i = a + i * h;
+        // Solución analítica exacta: u(x,t) = exp(i*t + x)
+        cd u_analitica = exp(eye * t_final_alcanzado + x_i);
+        
+        // Sumar el cuadrado del módulo de la diferencia
+        suma_error_sq += pow(abs(U(i) - u_analitica), 2);
+    }
+    double error_global = sqrt(suma_error_sq);
+
+    // Salida final por pantalla
+    cout << "------------------------------------" << endl;
     cout << "Tiempo de ejecución: " << chrono::duration<double>(end_time - start_time).count() << " s" << endl;
+    cout << "Error Global (Norma L2): " << scientific << setprecision(6) << error_global << endl;
+    cout << "------------------------------------" << endl;
+
     outfile.close();
     return 0;
 }
