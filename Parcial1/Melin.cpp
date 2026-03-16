@@ -2,7 +2,7 @@
 //  MELIN.cpp  —  Método de Líneas para la ecuación de difusión
 //  Equivalente exacto del Melin.f90, con:
 //    · Cronómetro de alta resolución (std::chrono)
-//    · Salida MELIN_cpp.dat compatible con el notebook Python
+//    · Salida MELINC.dat compatible con el notebook Python
 // ============================================================
 #include <iostream>
 #include <fstream>
@@ -86,9 +86,9 @@ int main()
     for (int i = 1; i < N; ++i) Y[i] = 100.0;
     Y[0] = 0.0;
 
-    std::ofstream dat("MELIN_cpp.dat");
+    std::ofstream dat("MELINC.dat");
     if (!dat.is_open()) {
-        std::cerr << "Error: no se pudo crear MELIN_cpp.dat\n";
+        std::cerr << "Error: no se pudo crear MELINC.dat\n";
         return 1;
     }
 
@@ -131,7 +131,7 @@ int main()
     std::cout << std::fixed << std::setprecision(6);
     std::cout << "  Tiempo de ejecucion: "
               << t_ejecucion << " segundos\n";
-    std::cout << "  Archivo generado   : MELIN_cpp.dat\n";
+    std::cout << "  Archivo generado   : MELINC.dat\n";
     std::cout << "=========================================\n\n";
 
     return 0;
