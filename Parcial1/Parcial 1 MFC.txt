@@ -23,4 +23,21 @@ Se soluciona la ecuación propuesta en el paper por medio de redes neuronales pr
 20. Conclusiones principales derivadas del estudio comparativo. 
 21. Evaluar eficiencia y pertinencia.
 
+Archivos 
 
+FORTRAN
+paper y 2 métodos más
+.dat
+
+PYTHON
+paper y 2 métodos más
+.dat
+Red Neuronal Profunda, 3 arquitecturas por función de activación
+
+C++ 
+paper y 2 métodos más
+.dat
+
+Correcciones
+Fortran x=0
+.dat de python
