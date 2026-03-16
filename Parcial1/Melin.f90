@@ -17,7 +17,7 @@ PROGRAM MELIN
   DX = ANCHO / N
   T  = 0.0D0
 
-  OPEN(UNIT=2, FILE='MELIN.dat', STATUS='REPLACE')
+  OPEN(UNIT=2, FILE='MELINF.dat', STATUS='REPLACE')
 
   ! ── Condición inicial ──────────────────
   DO I = 2, N
