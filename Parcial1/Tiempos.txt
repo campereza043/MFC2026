@@ -32,3 +32,25 @@ Integración completada: 601 pasos
 
 FORTRAN:
 Tiempo de ejecucion CPU:     0.000170 segundos
+
+
+
+FTCS:
+FORTRAN:
+=========================================
+  Tiempo de ejecucion :     0.000243 segundos
+  Archivo generado    : FTCSF.dat
+=========================================
+
+PYTHON:
+Integracion completada: 601 pasos
+=========================================
+  Tiempo de ejecucion : 0.000833 segundos
+  Archivo generado    : EXP.dat
+=========================================
+
+C++:
+=========================================
+  Tiempo de ejecucion : 0.000075 segundos
+  Archivo generado    : FTCSCPP.dat
+=========================================
