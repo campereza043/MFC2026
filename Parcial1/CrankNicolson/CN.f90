@@ -110,7 +110,7 @@ PROGRAM crank_nicolson
     END DO
 
     ! --- Guardado de datos ---
-    OPEN(UNIT=10, FILE='CN.dat', STATUS='REPLACE')
+    OPEN(UNIT=10, FILE='CNF.dat', STATUS='REPLACE')
     WRITE(10,'(A10,10A10,A12)') 't','T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T_frontera'
     DO k = 1, npmax
         WRITE(10,'(11F10.4, F12.4)') t_vals(k), (t_hist(i,k), i=2, nmax), t_front(k)
