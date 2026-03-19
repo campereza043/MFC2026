@@ -12,4 +12,31 @@ Melin:
     Tiempo de ejecucion: 0.018988 segundos  
   =========================================
 
-  
+Cranck Nicolson:
+  Frotran:
+  =================================
+  Crank-Nicolson Fortran
+---------------------------------
+  R (Fourier/2) =   0.1000
+  Estabilidad   : INCONDICIONAL
+  Tiempo        :   0.001545 s
+  Archivo       : MELINCN.dat
+=================================
+
+=================================
+  MELIN — Crank-Nicolson C++
+---------------------------------
+  R (Fourier/2) = 0.1000
+  Estabilidad   : INCONDICIONAL
+  Tiempo        : 0.001667 s
+  Archivo       : CNCPP.dat
+=================================
+
+=================================
+  MELIN — Crank-Nicolson Python
+---------------------------------
+  R (Fourier/2) = 0.1000
+  Estabilidad   : INCONDICIONAL
+  Tiempo        : 0.014361 s
+  Archivo       : CNPY.dat
+=================================

@@ -20,7 +20,7 @@ PROGRAM CRANK_NICOLSON
   T  = 0.0D0
   R  = ALFA*ALFA * H / (2.0D0 * DX*DX)   ! número de Fourier/2
 
-  OPEN(UNIT=3, FILE='MELINCN.dat', STATUS='REPLACE')
+  OPEN(UNIT=3, FILE='CNF.dat', STATUS='REPLACE')
 
   ! ── Condición inicial ──────────────────────────────────────
   DO I = 2, N
