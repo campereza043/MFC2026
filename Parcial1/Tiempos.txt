@@ -13,30 +13,20 @@ Melin:
   =========================================
 
 Cranck Nicolson:
-  Frotran:
-  =================================
-  Crank-Nicolson Fortran
----------------------------------
-  R (Fourier/2) =   0.1000
-  Estabilidad   : INCONDICIONAL
-  Tiempo        :   0.001545 s
-  Archivo       : MELINCN.dat
-=================================
 
-=================================
-  MELIN — Crank-Nicolson C++
----------------------------------
-  R (Fourier/2) = 0.1000
-  Estabilidad   : INCONDICIONAL
-  Tiempo        : 0.001667 s
-  Archivo       : CNCPP.dat
-=================================
+╔══════════════════════════════════════════════╗
+║     RESUMEN — MÉTODO DE CRANK-NICOLSON       ║
+╠══════════════════════════════════════════════╣
+║  Tiempo de ejecución  = 0.001988 s    ║
+║  MAE   (en t=30)      = 2.405040 °C  ║
+║  RMSE  (en t=30)      = 2.782735 °C  ║
+║  Error máximo (t=30)  = 4.329231 °C  ║
+╚══════════════════════════════════════════════╝
 
-=================================
-  MELIN — Crank-Nicolson Python
----------------------------------
-  R (Fourier/2) = 0.1000
-  Estabilidad   : INCONDICIONAL
-  Tiempo        : 0.014361 s
-  Archivo       : CNPY.dat
-=================================
+Integración completada: 601 pasos
+=========================================
+  Tiempo de ejecución : 0.007867 segundos
+  Archivo generado    : CN.dat
+=========================================
+
+
