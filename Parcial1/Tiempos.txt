@@ -13,7 +13,7 @@ Melin:
   =========================================
 
 Cranck Nicolson:
-
+C++
 ╔══════════════════════════════════════════════╗
 ║     RESUMEN — MÉTODO DE CRANK-NICOLSON       ║
 ╠══════════════════════════════════════════════╣
@@ -23,10 +23,12 @@ Cranck Nicolson:
 ║  Error máximo (t=30)  = 4.329231 °C  ║
 ╚══════════════════════════════════════════════╝
 
+PYTHON
 Integración completada: 601 pasos
 =========================================
   Tiempo de ejecución : 0.007867 segundos
   Archivo generado    : CN.dat
 =========================================
 
-
+FORTRAN:
+Tiempo de ejecucion CPU:     0.000170 segundos
