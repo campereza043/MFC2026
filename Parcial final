@@ -1,0 +1,14 @@
+Agua a 30° y 90° C
+El tiempo en el que se congela el agua a 90° es menor al tiempo en el que el agua a 30° se congela.
+Un sistema preparado a una temperatura calienre se endría o se congela más rápido que un sistema idéntico preparado a una temperatura tibia.
+Se presenta el fenónemo pero no siempre, solo en ciertos casos.
+El efeto Mpemba.
+
+Objetivo: Modelar numéricamente el comportamiento de dos sistemas  inmersos en un baño térmico 
+Condiciones: Lograr algorítmicamente que la curva térmica de $T_h$ cruce por debajo de la  cuerva de $T_c$ en el tiempo 
+Intento 1: La ley de enfriamento de Newton falla. Es una EDO lineal de primemr orden. Por el teorema de unicudad de trayectoris nunca puede cruzarse
+Intento 2: Calor + Evaporación: Acoplar Newton con una función de pérdida de masa 
+
+Modelar Mpemba y dar una explicación, revisar la literatura y encontrar el método más efectivo para recrear y mejorar los métodos. Mostrar el modelamiento del problema abierto. 
+Sutentación primera semana de Junio.
+Tiene que tener teoría, computación y si se quiere experimentación 
